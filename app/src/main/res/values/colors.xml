@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#008577</color>
+    <color name="colorPrimaryDark">#00574B</color>
+    <color name="gridColor">#455B65</color>
+    <color name="colorAccent">#CE6557</color>
+    <color name="gridColorDark">#283135</color>
+    <color name="colorPieceYellow">#FDBF68</color>
+    <color name="colorPieceRed">#CE6557</color>
+
+    <color name="snackAction">#CE6557</color>
+
+</resources>

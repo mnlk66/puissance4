@@ -1,0 +1,56 @@
+<resources>
+    <string name="app_name">Puissance 4</string>
+    <string name="action_settings">Paramètres</string>
+    <string name="action_analytics">Statistiques</string>
+    <string name="action_ok">Ok</string>
+    <string name="game_over">Partie terminé\nCliquez sur recommencez pour rejouer !!</string>
+    <string name="equal_game">Match nul\nCliquez sur recommencez pour rejouer !!</string>
+    <string name="no_more_space">Plus de place sur cette colonne</string>
+    <string name="you_win">Vous avez gagné :-)</string>
+    <string name="you_lose">Vous avez perdu :-(</string>
+    <string name="snackbar_yes">OUI</string>
+    <string name="snackbar_replay">RECOMMENCER</string>
+    <string name="difficulty">Difficulté : </string>
+    <string name="level_change_at_next_game">Le niveau changera à la prochaine partie</string>
+    <string name="color_piece_user_change_at_next_game">La couleur de votre pion changera à la prochaine partie</string>
+    <string name="first_user_change_at_next_game">Le premier utilisateur changera à la prochaine partie</string>
+    <string name="level_easy">Facile</string>
+    <string name="level_medium">Moyen</string>
+    <string name="level_hard">Difficile</string>
+    <string name="do_you_want_replay">Etes-vous sûr de recommencer ?</string>
+    <string name="touch_play_for_begin">Appuyer sur le bouton pour commencer la partie</string>
+    <string name="who_begin">Qui commence :</string>
+    <string name="user_begin">Humain</string>
+    <string name="computer_begin">Ordinateur</string>
+    <string name="piece_color">Quelle couleur pour votre pion :</string>
+    <string name="piece_red">Rouge</string>
+    <string name="piece_yellow">jaune</string>
+    <string name="game_already_begin">La partie est déjà commencé</string>
+    <string name="label_equal_game">Matchs nuls :</string>
+    <string name="label_win_game">Matchs gagnés :</string>
+    <string name="label_loose_game">Matchs perdus :</string>
+
+    <string name="pui">PUI</string>
+    <string name="ssa">SSA</string>
+    <string name="nce">NCE</string>
+    <string name="_4">4</string>
+    <string name="start">START</string>
+    <string name="entrez_votre_pseudo">Entrez votre pseudo</string>
+    <string name="title_activity_home">Home</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+
+    <string name="menu_home">Home</string>
+    <string name="menu_gallery">Gallery</string>
+    <string name="menu_slideshow">Slideshow</string>
+    <string name="menu_tools">Tools</string>
+    <string name="menu_share">Share</string>
+    <string name="menu_send">Send</string>
+    <string name="bonjour">Bonjour</string>
+    <string name="reset">RESET</string>
+    <string name="partie_duo">Partie Duo</string>
+    <string name="partie_solo">Partie Solo</string>
+</resources>

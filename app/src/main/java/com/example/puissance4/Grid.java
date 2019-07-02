@@ -28,6 +28,7 @@ public class Grid extends BaseAdapter {
     private int[] mThumbs = new int[42];
     private String nextPlayer;
     private String color_piece_user;
+    private String typePartie;
 
     // partages de preferences 
     private SharedPreferences preferences;
@@ -37,14 +38,16 @@ public class Grid extends BaseAdapter {
     //Utilisation de l'interface pour envoyer les evenements
     private GridListener mListener;
 
-    public Grid(final Activity activity, final String firstPlayer, final int screenWidth) {
+    public Grid(final Activity activity, final String firstPlayer, final int screenWidth,final String type) {
         this.context = activity.getApplicationContext();
         this.inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         this.nextPlayer = firstPlayer;
         this.screenWidth = screenWidth;
         this.preferences = PreferenceManager.getDefaultSharedPreferences(context);
         this.preferencesEditor = this.preferences.edit();
+        this.typePartie=type;
         mon_IA = new IA();
+
 
         // Verify that the host activity implements the callback interface
         try {
@@ -56,6 +59,14 @@ public class Grid extends BaseAdapter {
         }
 
         cleanGrid();
+    }
+
+    public String getTypePartie() {
+        return typePartie;
+    }
+
+    public void setTypePartie(String typePartie) {
+        this.typePartie = typePartie;
     }
 
     public interface GridListener {
@@ -75,6 +86,8 @@ public class Grid extends BaseAdapter {
     }
 
     public boolean gameStart() {
+
+
         boolean b = false;
 
         for(int i = 0; i<=6; i++) //vérif  par colonnes
@@ -177,9 +190,9 @@ public class Grid extends BaseAdapter {
                         notifyDataSetChanged();
 
                         if (!mon_IA.playerWin(mPiecesPlayed, Const.PLAYER)) {
-                            if(stillPlay()){
-                                nextPlayer = Const.COMPUTER;
-                                placeIAPiece();
+                            if(stillPlay()) {
+                                    nextPlayer = Const.COMPUTER;
+                                    placeIAPiece();
                             }
                             else {
                                 increaseAnalytics(Const.PREF_EQUAL);
@@ -275,6 +288,61 @@ public class Grid extends BaseAdapter {
 
     }
 
+    public void placeGamerActualpiece(int position,String color_piece_user,String nextPlayer){
+        if(gameEnd()) {
+            showMessage(context.getString(R.string.game_over));
+        } else {
+            final int column = position % 7;
+
+            if (nbPiecesByColumn[column] < 6) {
+                int li = 5;
+                boolean b = false;
+
+                do {
+                    if (mPiecesPlayed[column][li] == null) {
+
+                        if (!mon_IA.playerWin(mPiecesPlayed, nextPlayer)) {
+                            if(stillPlay()) {
+                        Log.d("mpiecesPlayed", "placeGamerActualpiece: ICI ");
+                        b = true;
+
+                        nbPiecesByColumn[column] = nbPiecesByColumn[column] + 1;
+                        if (nextPlayer==Const.PLAYER) {
+                            mPiecesPlayed[column][li] = Const.PLAYER;
+
+                        }
+
+                        else if (nextPlayer==Const.COMPUTER){
+                            mPiecesPlayed[column][li]= Const.COMPUTER;
+                        }
+
+                        int positionAjouer = column + (li * 7);
+
+                        if (Const.YELLOW_PIECE.equals(color_piece_user)) {
+                            mThumbs[positionAjouer] = R.drawable.ic_orange;
+                        } else if (Const.RED_PIECE.equals(color_piece_user)) {
+                            mThumbs[positionAjouer] = R.drawable.ic_rouge;
+                        }
+
+                        notifyDataSetChanged();
+                            }
+                            else {
+                                increaseAnalytics(Const.PREF_EQUAL);
+                                showMessage(context.getString(R.string.equal_game));
+                            }
+                        } else {
+                            increaseAnalytics(Const.PREF_WINS);
+                            showMessage(context.getString(R.string.you_win));
+                        }
+                    } else {
+                        li--;
+                    }
+                } while (!b);
+            } else {
+                showMessage(context.getString(R.string.no_more_space));
+            }
+        }
+    }
     public boolean gameEnd() {
         return mon_IA.playerWin(mPiecesPlayed, Const.COMPUTER) || mon_IA.playerWin(mPiecesPlayed, Const.PLAYER) || !stillPlay();
     }

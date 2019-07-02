@@ -3,28 +3,42 @@ package com.example.puissance4;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.view.View;
-import android.support.v4.view.GravityCompat;
-import android.support.v7.app.ActionBarDrawerToggle;
-import android.view.MenuItem;
 import android.support.design.widget.NavigationView;
+import android.support.design.widget.Snackbar;
+import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
-
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+
+import butterknife.BindView;
 
 public class Home extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
+    public String typePartie;
+
+    @BindView(R.id.PartDuo)
+    Button textPartDuo;
+
+    @BindView(R.id.PartSolo)
+    Button textPartSolo;
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
         Intent i = getIntent();
+
         if (i != null){
             String str = "";
             if (i.hasExtra("edittext")){
@@ -38,23 +52,32 @@ public class Home extends AppCompatActivity
 
         }
 
-        Button btnPD = (Button) findViewById(R.id.PartDuo);
+        final Button btnPD = (Button) findViewById(R.id.PartDuo);
 
         btnPD.setOnClickListener(new View.OnClickListener() {
+
+
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(Home.this,MainActivity.class);
+                Log.d("partieduo", "onClick: "+btnPD.getText().toString());
+                typePartie=btnPD.getText().toString();
+                i.putExtra("typePartie",typePartie);
+
+
 
                 startActivity(i);
             }
         });
 
-        Button btnPS = (Button) findViewById(R.id.PartSolo);
+        final Button btnPS = (Button) findViewById(R.id.PartSolo);
 
         btnPS.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(Home.this,MainActivity.class);
+                typePartie=btnPS.getText().toString();
+                i.putExtra("typePartie",typePartie);
 
                 startActivity(i);
             }

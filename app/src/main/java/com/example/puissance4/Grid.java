@@ -199,6 +199,8 @@ public class Grid extends BaseAdapter {
                                 showMessage(context.getString(R.string.equal_game));
                             }
                         } else {
+
+                            Log.d("WIN", "placeGamerPiece:WINN ");
                             increaseAnalytics(Const.PREF_WINS);
                             showMessage(context.getString(R.string.you_win));
                         }
@@ -330,7 +332,10 @@ public class Grid extends BaseAdapter {
                                 increaseAnalytics(Const.PREF_EQUAL);
                                 showMessage(context.getString(R.string.equal_game));
                             }
-                        } else {
+                        }
+                        Log.d("iswin ?", "placeGamerPiece: "+!mon_IA.playerWin(mPiecesPlayed, Const.PLAYER));
+                        if (mon_IA.playerWin(mPiecesPlayed, Const.PLAYER)){
+                            Log.d("WIN", "placeGamerActualpiece: WINER ");
                             increaseAnalytics(Const.PREF_WINS);
                             showMessage(context.getString(R.string.you_win));
                         }

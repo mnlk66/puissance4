@@ -34,18 +34,18 @@ public class IA {
      * @param player
      * @return TRUE if player is winner and FALSE if not
      */
-    public boolean playerWin(final String[][] game, final String player) {
+       public boolean playerWin(final String[][] game, final String player) {
 
-        // Check if player win by column
-        for (int i = 0; i<=6; i++) {
-            for (int j = 0; j<=2; j++) {
-                if (player.equals(game[i][j])
-                        && player.equals(game[i][j + 1])
-                        && player.equals(game[i][j + 2])
-                        && player.equals(game[i][j + 3])) {
-                    return true;
-                }
-            }
+                    // Check if player win by column
+                    for (int i = 0; i<=6; i++) {
+                        for (int j = 0; j<=2; j++) {
+                            if (player.equals(game[i][j])
+                                    && player.equals(game[i][j + 1])
+                                    && player.equals(game[i][j + 2])
+                                    && player.equals(game[i][j + 3])) {
+                                return true;
+                            }
+                        }
         }
 
         // Check if player win by line

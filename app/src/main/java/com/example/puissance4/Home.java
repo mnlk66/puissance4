@@ -48,7 +48,7 @@ public class Home extends AppCompatActivity
             int nbLettre = i.getIntExtra("nbLettre", 0);
 
             TextView textView = (TextView) findViewById(R.id.tv1);
-            textView.setText("Bonjour"+""+str  );
+            textView.setText("Bonjour "+""+str  );
 
         }
 

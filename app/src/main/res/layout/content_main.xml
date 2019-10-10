@@ -33,16 +33,6 @@
         android:layout_height="match_parent"
         android:background="@drawable/shadow_box"
         android:orientation="vertical"
-        android:padding="10dp">
-
-        <android.support.design.widget.FloatingActionButton
-            android:id="@+id/fab_play"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:layout_margin="@dimen/fab_margin"
-            android:src="@drawable/ic_play_arrow_white_24dp" />
-
-    </RelativeLayout>
+        android:padding="10dp"/>
 
 </LinearLayout>

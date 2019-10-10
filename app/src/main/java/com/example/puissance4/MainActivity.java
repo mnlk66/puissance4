@@ -29,8 +29,6 @@ public class MainActivity extends AppCompatActivity implements Grid.GridListener
     ProgressBar toolbarProgressBar;
     @BindView(R.id.gridView)
     GridView gridView;
-    @BindView(R.id.fab_play)
-    FloatingActionButton fabPlay;
     @BindView(R.id.view)
     CoordinatorLayout view;
     @BindView(R.id.btn_info)
@@ -141,12 +139,6 @@ public class MainActivity extends AppCompatActivity implements Grid.GridListener
         adapter.setColor_piece_user(COLOR_PIECE_USER);
         adapter.setNiveauToIA(this.Niveau);
 
-        if (FIRST_PLAYER.equals(Const.COMPUTER)) {
-            fabPlay.setVisibility(View.VISIBLE);
-        } else {
-            fabPlay.setVisibility(View.GONE);
-        }
-
         gridView.setAdapter(adapter);
     }
 
@@ -156,9 +148,6 @@ public class MainActivity extends AppCompatActivity implements Grid.GridListener
         gridView.setEnabled(false);
         btnReplay.setEnabled(false);
 
-        if (Const.COMPUTER.equals(FIRST_PLAYER)) {
-            fabPlay.setEnabled(false);
-        }
     }
 
     @OnItemClick(R.id.gridView)
@@ -188,9 +177,6 @@ public class MainActivity extends AppCompatActivity implements Grid.GridListener
         gridView.setEnabled(true);
         btnReplay.setEnabled(true);
 
-        if (Const.COMPUTER.equals(FIRST_PLAYER)) {
-            fabPlay.setEnabled(true);
-        }
     }
 
     public void showSnackMessage(String message) {

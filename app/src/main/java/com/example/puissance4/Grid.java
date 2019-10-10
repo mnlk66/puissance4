@@ -13,6 +13,8 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 
 import java.text.DecimalFormat;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -49,12 +51,12 @@ public class Grid extends BaseAdapter {
         mon_IA = new IA();
 
 
-        // Verify that the host activity implements the callback interface
+        // Verification de l'implementation de l'activité
         try {
-            // Instantiate the GridAdapterListener so we can send events to the host
+            // Instantiate the GridAdapterListener
             mListener = (GridListener) activity;
         } catch (ClassCastException e) {
-            // The activity doesn't implement the interface, throw exception
+            //  exception
             throw new ClassCastException(activity.toString() + " must implement SettingsDialogListener");
         }
 
@@ -255,6 +257,9 @@ public class Grid extends BaseAdapter {
 
             @Override
             protected void onPostExecute(Integer column) {
+                final  String[]  messagewin={"Au suivant?","L'adversiare précédent était beaucoup plus fort","Cela m'ennuie","Aucun challenge","dois je vous laisser 2 tours d'avance ?"};
+                final  String[]  message={"tu Réfléchis c'est ca ?","Lè ou fo ou pa fèb","Applique toi","je joue contre un aveugle ?","ZZZZZZZ","je suis en mode façile","tu ne fais clairement pas le poids","JEMA VAINCRA","c'est pas de la rigolade","JEMA petite idée"};
+
                 if (column != -1) {
                     final int positionAjouer = ((5 - nbPiecesByColumn[column]) * 7) + column;
                     final int ligne = (int) Math.floor(positionAjouer / 7);
@@ -273,14 +278,35 @@ public class Grid extends BaseAdapter {
                     if (!mon_IA.playerWin(mPiecesPlayed, nextPlayer)) {
                         if(stillPlay()){
                             nextPlayer = Const.PLAYER;
+
+                            new Timer().schedule(new TimerTask() {
+                                @Override
+                                public void run() {
+                                    // this code will be executed after 2 seconds
+                                    final  int rando =(int)((Math.random()*7));
+                                    showMessage(message[rando]);
+                                }
+                            }, 000,13000);
+
                         }
                         else {
                             increaseAnalytics(Const.PREF_EQUAL);
                             showMessage(context.getString(R.string.equal_game));
                         }
                     } else {
+
                         increaseAnalytics(Const.PREF_LOOSE);
                         showMessage(context.getString(R.string.you_lose));
+
+                        new Timer().schedule(new TimerTask() {
+                            @Override
+                            public void run() {
+                                // this code will be executed after 2 seconds
+                                final  int rando =(int)((Math.random()*5));
+                                showMessage(messagewin[rando]);
+                            }
+                        }, 3000);
+
                     }
                 }
 
@@ -291,6 +317,7 @@ public class Grid extends BaseAdapter {
     }
 
     public void placeGamerActualpiece(int position,String color_piece_user,String nextPlayer){
+        final  String[]  messagedefeat={"ce n'etait pas prévu","j'ai raté ma cible","surement une latence","je vous ai laissé gagné"};
         if(gameEnd()) {
             showMessage(context.getString(R.string.game_over));
         } else {
@@ -338,6 +365,14 @@ public class Grid extends BaseAdapter {
                             Log.d("WIN", "placeGamerActualpiece: WINER ");
                             increaseAnalytics(Const.PREF_WINS);
                             showMessage(context.getString(R.string.you_win));
+                            new Timer().schedule(new TimerTask() {
+                                @Override
+                                public void run() {
+                                    // this code will be executed after 2 seconds
+                                    final  int rando =(int)((Math.random()*4));
+                                    showMessage(messagedefeat[rando]);
+                                }
+                            }, 3000);
                         }
                     } else {
                         li--;

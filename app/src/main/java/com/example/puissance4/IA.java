@@ -101,6 +101,9 @@ public class IA {
     private void analyzeFuturePosition(Node node, final int depth, final String[][] game, final String player) {
 
         if (playerWin(game, Const.COMPUTER)) {
+
+            final  String[]  message2={"Je suis en mode facile"};
+
             node.setEstimation(MAX + MAX);
             node.setDepth(depth);
             return;

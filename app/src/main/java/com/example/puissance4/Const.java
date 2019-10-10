@@ -5,7 +5,7 @@ public class Const {
     public final static String YELLOW_PIECE = "Y_P";
     public final static String RED_PIECE = "R_P";
 
-    public final static int DEPTH_EASY = 2;
+    public final static int DEPTH_EASY = 5;
 
 
     public final static String COMPUTER = "C";
